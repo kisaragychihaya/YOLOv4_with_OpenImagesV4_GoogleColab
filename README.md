@@ -172,7 +172,7 @@ drive.mount('/content/drive')
 
 ```
 # Create config_data.txt config file
-!!rm -rf config_data.txt
+!rm -rf config_data.txt
 !echo classes=2 > config_data.txt
 !echo train=train.txt >> config_data.txt
 !echo valid=test.txt >> config_data.txt
