@@ -1,0 +1,5 @@
+pandas
+numpy
+awscli
+urllib3
+opencv-python
