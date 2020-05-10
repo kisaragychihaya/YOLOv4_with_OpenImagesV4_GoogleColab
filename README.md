@@ -50,7 +50,7 @@
 !git clone https://github.com/DucLeTrong/Train-YOLOv4-with-OpenImagesV4-Colab.git
 ```
 
-##2. Download data
+## 2. Download data
 
 ### Install the required packages
 
@@ -115,7 +115,7 @@ In this example download Person and Car from the train set. In this case we have
         [INFO] | Labels creation completed.[0m
     
 
-#3. Prepare data for Yolo formatting
+## 3. Prepare data for Yolo formatting
 
 ### Making obj_name.txt file contain all classes
 
@@ -137,7 +137,7 @@ In this example download Person and Car from the train set. In this case we have
 !python3 process_data.py --data_set_name='Train' --des_path='custom_data'
 ```
 
-##4. Config model
+## 4. Config model
 
 ### Mount google drive and create a symbolic link backup file at google drive to save training weight in case of training interruption with internet problems. 
 
@@ -248,7 +248,7 @@ gdown.download(url, output, quiet=False)
 
 #### Save that after making the changes.
 
-##5. Train Model
+## 5. Train Model
 
 
 ```
