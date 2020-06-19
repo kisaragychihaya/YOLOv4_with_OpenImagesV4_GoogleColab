@@ -47,7 +47,7 @@
 - Clone this repository
 
 ```
-!git clone https://github.com/DucLeTrong/Train-YOLOv4-with-OpenImagesV4-Colab.git
+!git clone https://github.com/DucLeTrong/YOLOv4_with_OpenImagesV4_GoogleColab.git
 ```
 
 ## 2. Download data
@@ -58,7 +58,7 @@ Peek inside the requirements file if you have everything already installed. Most
 
 
 ```
-%cd /content/Train-YOLOv4-with-OpenImagesV4-Colab/OIDv4_ToolKit
+%cd /content/YOLOv4_with_OpenImagesV4_GoogleColab/OIDv4_ToolKit
 !pip3 install -r requirements.txt
 ```
 
