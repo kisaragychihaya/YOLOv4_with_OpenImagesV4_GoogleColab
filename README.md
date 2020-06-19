@@ -121,13 +121,13 @@ In this example download Person and Car from the train set. In this case we have
 
 
 ```
-%cd /content/Train-YOLOv4-with-OpenImagesV4-Colab
+%cd /content/YOLOv4_with_OpenImagesV4_GoogleColab
 
 !echo Person >> obj_name.txt
 !echo Car >> obj_name.txt
 ```
 
-    /content/Train-YOLOv4-with-OpenImagesV4-Colab
+    /content/YOLOv4_with_OpenImagesV4_GoogleColab
     
 
 ### Processing data to yolo formatting and preparing training data with  process_data.py
@@ -156,7 +156,7 @@ drive.mount('/content/drive')
 
 
 ```
-!ln -s "/content/drive/My Drive/backup_yolo" "/content/Train-YOLOv4-with-OpenImagesV4-Colab"
+!ln -s "/content/drive/My Drive/backup_yolo" "/content/YOLOv4_with_OpenImagesV4_GoogleColab"
 ```
 
 ### I created a text file named it 'config_data.txt' containing the following:
@@ -216,7 +216,7 @@ gdown.download(url, output, quiet=False)
 ```
     Downloading...
     From: https://drive.google.com/uc?id=1JKF-bdIklxOOVy-2Cr5qdvjgGpmGfcbp&export=download
-    To: /content/Train-YOLOv4-with-OpenImagesV4-Colab/yolov4.conv.137
+    To: /content/YOLOv4_with_OpenImagesV4_GoogleColab/yolov4.conv.137
     170MB [00:03, 44.3MB/s]
     
     'yolov4.conv.137'
