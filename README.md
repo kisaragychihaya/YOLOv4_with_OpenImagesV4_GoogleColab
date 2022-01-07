@@ -17,12 +17,12 @@
 
 - I also give a tutorial to train YOLOv4 on google colab with this repository and custom data.
 
-# II. Training Yolo_v4 with custom data by Google colab
-## 1. Setup google colab
+# II. Training Yolo_v4 with custom data by Local GPU
+## 1. Setup Env
 
 - Check GPU
 ```
-!nvidia-smi
+nvidia-smi
 ```
 
     Sun May 10 07:04:58 2020       
@@ -47,7 +47,8 @@
 - Clone this repository
 
 ```
-!git clone https://github.com/DucLeTrong/YOLOv4_with_OpenImagesV4_GoogleColab.git
+cd ~
+git clone https://github.com/DucLeTrong/YOLOv4_with_OpenImagesV4_GoogleColab.git
 ```
 
 ## 2. Download data
@@ -58,8 +59,8 @@ Peek inside the requirements file if you have everything already installed. Most
 
 
 ```
-%cd /content/YOLOv4_with_OpenImagesV4_GoogleColab/OIDv4_ToolKit
-!pip3 install -r requirements.txt
+cd ~/YOLOv4_with_OpenImagesV4_GoogleColab/OIDv4_ToolKit
+pip3 install -r requirements.txt
 ```
 
 ### Download different classes in separated folders
@@ -71,7 +72,7 @@ In this example download Person and Car from the train set. In this case we have
 - Read more about OIDv4_ToolKit  [here](https://github.com/DucLeTrong/darknet/tree/master/OIDv4_ToolKit)
 
 ```
- !python3 main.py downloader -y --classes Person Car --type_csv train --limit 100
+ python3 main.py downloader -y --classes Person Car --type_csv train --limit 100
 ```
 
     [92m
@@ -121,10 +122,10 @@ In this example download Person and Car from the train set. In this case we have
 
 
 ```
-%cd /content/YOLOv4_with_OpenImagesV4_GoogleColab
+cd ~/YOLOv4_with_OpenImagesV4_GoogleColab
 
-!echo Person >> obj_name.txt
-!echo Car >> obj_name.txt
+echo Person >> obj_name.txt
+echo Car >> obj_name.txt
 ```
 
     /content/YOLOv4_with_OpenImagesV4_GoogleColab
@@ -134,30 +135,10 @@ In this example download Person and Car from the train set. In this case we have
 
 
 ```
-!python3 process_data.py --data_set_name='Train' --des_path='custom_data'
+python3 process_data.py --data_set_name='Train' --des_path='custom_data'
 ```
 
 ## 4. Config model
-
-### Mount google drive and create a symbolic link backup file at google drive to save training weight in case of training interruption with internet problems. 
-
-
-```
-from google.colab import drive
-drive.mount('/content/drive')
-```
-
-    Go to this URL in a browser: https://accounts.google.com/o/oauth2/auth?client_id=947318989803-6bn6qk8qdgf4n4g3pfee6491hc0brc4i.apps.googleusercontent.com&redirect_uri=urn%3aietf%3awg%3aoauth%3a2.0%3aoob&response_type=code&scope=email%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdocs.test%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdrive%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdrive.photos.readonly%20https%3a%2f%2fwww.googleapis.com%2fauth%2fpeopleapi.readonly
-    
-    Enter your authorization code:
-    ··········
-    Mounted at /content/drive
-    
-
-
-```
-!ln -s "/content/drive/My Drive/backup_yolo" "/content/YOLOv4_with_OpenImagesV4_GoogleColab"
-```
 
 ### I created a text file named it 'config_data.txt' containing the following:
 
@@ -172,54 +153,23 @@ drive.mount('/content/drive')
 
 ```
 # Create config_data.txt config file
-!rm -rf config_data.txt
-!echo classes=2 > config_data.txt
-!echo train=train.txt >> config_data.txt
-!echo valid=test.txt >> config_data.txt
-!echo names=obj_name.txt >> config_data.txt
-!echo backup=backup_yolo >> config_data.txt
+rm -rf config_data.txt
+echo classes=2 > config_data.txt
+echo train=train.txt >> config_data.txt
+echo valid=valid.txt >> config_data.txt
+echo names=obj_name.txt >> config_data.txt
+echo backup=backup_yolo >> config_data.txt
 ```
 
-### Compile Darknet (using cmake)
 
-
-
-```
-!chmod +x ./build.sh
-!./build.sh
-
-```
-    [100%] [32m[1mLinking CXX executable uselib[0m
-    [100%] Built target uselib
-    [36mInstall the project...[0m
-    -- Install configuration: "Release"
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/libdark.so
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/include/darknet/darknet.h
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/include/darknet/yolo_v2_class.hpp
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/uselib
-    -- Set runtime path of "/content/Train-YOLOv4-with-OpenImagesV4-Colab/uselib" to ""
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/darknet
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/share/darknet/DarknetTargets.cmake
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/share/darknet/DarknetTargets-release.cmake
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/share/darknet/DarknetConfig.cmake
-    -- Installing: /content/Train-YOLOv4-with-OpenImagesV4-Colab/share/darknet/DarknetConfigVersion.cmake
     
 
 ### Download weights of YoloV4 pretrain from google drive
 
 
 ```
-import gdown
-url = 'https://drive.google.com/uc?id=1JKF-bdIklxOOVy-2Cr5qdvjgGpmGfcbp&export=download'
-output = 'yolov4.conv.137'
-gdown.download(url, output, quiet=False) 
+https://drive.google.com/uc?id=1JKF-bdIklxOOVy-2Cr5qdvjgGpmGfcbp&export=download
 ```
-    Downloading...
-    From: https://drive.google.com/uc?id=1JKF-bdIklxOOVy-2Cr5qdvjgGpmGfcbp&export=download
-    To: /content/YOLOv4_with_OpenImagesV4_GoogleColab/yolov4.conv.137
-    170MB [00:03, 44.3MB/s]
-    
-    'yolov4.conv.137'
 
 
 
@@ -229,7 +179,7 @@ gdown.download(url, output, quiet=False)
 
 
 ```
-!cp cfg/yolov4-custom.cfg yolov4-custom.txt
+cp cfg/yolov4-custom.cfg yolov4-custom.txt
 ```
 
 #### Edit yolov4-custom.txt file as follows: 
@@ -252,8 +202,7 @@ gdown.download(url, output, quiet=False)
 
 
 ```
-!chmod +x ./darknet
-!./darknet detector train config_data.txt yolov4-custom.txt yolov4.conv.137 -dont_show > yolov3-5c.log
+darknet detector train config_data.txt yolov4-custom.txt yolov4.conv.137 -dont_show -map> yolov3-5c.log
 ```
 
      CUDA-version: 10010 (10010), cuDNN: 7.6.5, CUDNN_HALF=1, GPU count: 1  
