@@ -70,6 +70,7 @@ pip3 install -r requirements.txt
 In this example download Person and Car from the train set. In this case we have to use the following command.
 
 - Read more about OIDv4_ToolKit  [here](https://github.com/DucLeTrong/darknet/tree/master/OIDv4_ToolKit)
+- https://storage.googleapis.com/openimages/web/visualizer/index.html?set=train&type=detection&c=%2Fm%2F02dl1y
 
 ```
  python3 main.py downloader -y --classes Person Car --type_csv train --limit 100
